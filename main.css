@@ -525,6 +525,10 @@ body {
 }
 /* 576px 이하*/
 @media (max-width: 576px) {
+  #header,
+  #book {
+    background-attachment: scroll;
+  }
   #header .logo a {
     font-size: 32px;
     width: auto;
