@@ -11,16 +11,32 @@ var slideCount = $slide.length;
 var currentIdx = 0;
 var showNumber = 3;
 
-$slide.forEach(function (slide) {
-  slide.style.width = containerWidth * 0.333333 + 'px';
-});
+if (matchMedia('screen and (min-width: 480px)').matches) {
+  // 480px 이상에서 사용할 JavaScript
+  $slide.forEach(function (slide) {
+    slide.style.width = containerWidth * 0.333333 + 'px';
+  });
 
-$slides.style.width = containerWidth * 0.333333 * slideCount + 'px';
+  $slides.style.width = containerWidth * 0.333333 * slideCount + 'px';
 
-function moveSlide(num) {
-  $slides.style.left = containerWidth * 0.333333 * -num + 'px';
-  currentIdx = num;
+  function moveSlide(num) {
+    $slides.style.left = containerWidth * 0.333333 * -num + 'px';
+    currentIdx = num;
+  }
+} else {
+  // 480px 미만에서 사용할 JavaScript
+  $slide.forEach(function (slide) {
+    slide.style.width = containerWidth * 0.8 + 'px';
+  });
+
+  $slides.style.width = containerWidth * 0.8 * slideCount + 'px';
+
+  function moveSlide(num) {
+    $slides.style.left = containerWidth * 0.8 * -num + 'px';
+    currentIdx = num;
+  }
 }
+
 $nextBtn.addEventListener('click', function () {
   if (currentIdx >= slideCount - showNumber) {
     moveSlide(0);
